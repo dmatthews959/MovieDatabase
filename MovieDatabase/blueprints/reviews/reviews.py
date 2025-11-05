@@ -75,7 +75,6 @@ def reviews_by_stars():
         return jsonify({'error': 'Missing stars parameter'}), 400
     
     stars = str(stars)
-    
     results = movies.find()
     matched_movies = []
 
@@ -91,3 +90,27 @@ def reviews_by_stars():
                     break
 
     return jsonify(matched_movies), 200
+
+@reviews_bp.route("/api/v1.0/movies/<mid>/reviews/stars", methods=["GET"])
+def movie_name_and_stars(mid):
+    stars = request.args.get("stars")
+    if not stars:
+        return jsonify({"error": "Missing stars parameter"}), 400
+    
+    movie = movies.find_one({"_id": ObjectId(mid)})
+
+    if not movie:
+        return jsonify({"error": "Movie not found"}), 404
+
+    if "_id" in movie:
+        movie["_id"] = str(movie["_id"])
+
+    if "reviews" in movie:
+        for review in movie["reviews"]:
+            if "_id" in review:
+                review["_id"] = str(review["_id"])
+        movie["reviews"] = [
+            review for review in movie["reviews"]
+            if "stars" in review and str(review["stars"]) == str(stars)]
+
+    return jsonify(movie), 200
