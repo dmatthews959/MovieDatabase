@@ -2,7 +2,6 @@ from flask import Blueprint, request, make_response, jsonify
 from decorators import jwt_required, admin_required
 import globals
 from bson import ObjectId
-import re
 
 movies_bp = Blueprint("movies_bp", __name__)
 
@@ -35,15 +34,16 @@ def show_one_movie(id):
             review['_id'] = str(review['_id'])
         return make_response(jsonify(movie), 200)
     else:
-        return make_response(jsonify({"error": "Invalid business ID"}), 404)
+        return make_response(jsonify({"error": "Invalid Movie ID"}), 404)
     
 @movies_bp.route("/api/v1.0/movies", methods=["POST"])
 @jwt_required
 def add_movie():
-    if "Title" in request.form and "Year" in request.form and "Runtime" in request.form and "Genre" in request.form and "Director" in request.form and "Actors" in request.form and "Plot" in request.form:
+    if "Title" in request.form and "Year" in request.form and "IMDb Rating" in request.form and "Runtime" in request.form and "Genre" in request.form and "Director" in request.form and "Actors" in request.form and "Plot" in request.form:
         new_movie = {
             "Title" : request.form["Title"],
             "Year" : request.form["Year"],
+            "IMDb Rating" : request.form["IMDb Rating"],
             "Runtime" : request.form["Runtime"],
             "Genre" : request.form["Genre"],
             "Director" : request.form["Director"],
@@ -60,10 +60,11 @@ def add_movie():
 @movies_bp.route("/api/v1.0/movies/<string:id>", methods=["PUT"])
 @jwt_required
 def edit_movie(id):
-    if "Title" in request.form and "Year" in request.form and "Runtime" in request.form and "Genre" in request.form and "Director" in request.form and "Actors" in request.form and "Plot" in request.form:
+    if "Title" in request.form and "Year" in request.form and "IMDb Rating" in request.form and "Runtime" in request.form and "Genre" in request.form and "Director" in request.form and "Actors" in request.form and "Plot" in request.form:
         result = movies.update_one({ "_id" : ObjectId(id)}, {
                 "$set" : {"Title" : request.form["Title"],
                           "Year" : request.form["Year"],
+                          "IMDb Rating" : request.form["IMDb Rating"],
                           "Runtime" : request.form["Runtime"],
                           "Genre" : request.form["Genre"],
                           "Director" : request.form["Director"],
@@ -194,16 +195,3 @@ def movies_by_genre():
             matched_movies.append(movie)
 
     return jsonify(matched_movies), 200
-    
-
-
-
-
-
-
-
-
-
-
-
-
