@@ -1,0 +1,73 @@
+[{
+	"_id": {
+		"$oid": "690cb778fbf92c0ddb9239f6"
+	},
+	"movie_id": {
+		"$oid": "69026399a9f15b2a209c6169"
+	},
+	"award_name": "Academy Award",
+	"category": "Best Picture",
+	"year": 2023,
+	"won": true
+},
+{
+	"_id": {
+		"$oid": "690cbb944e6771424e15fc9c"
+	},
+	"movie_id": {
+		"$oid": "69026399a9f15b2a209c6169"
+	},
+	"award_name": "Test Award",
+	"category": "Test Category 2",
+	"year": 2024,
+	"won": false
+},
+{
+	"_id": {
+		"$oid": "690ce869951d7b10d555f4b4"
+	},
+	"movie_id": {
+		"$oid": "69026399a9f15b2a209c60cd"
+	},
+	"award_name": "Postman Test Award",
+	"category": "Postman Test Category",
+	"year": 2019,
+	"won": true
+},
+{
+	"_id": {
+		"$oid": "690ce97a927b5246d67ae3a8"
+	},
+	"movie_id": {
+		"$oid": "69026399a9f15b2a209c60cd"
+	},
+	"award_name": "Postman Test Award",
+	"category": "Postman Test Catergory 2",
+	"year": 2019,
+	"won": false
+},
+{
+	"_id": {
+		"$oid": "690cea91927b5246d67ae3ac"
+	},
+	"movie_id": {
+		"$oid": "69026399a9f15b2a209c60cd"
+	},
+	"award_name": "Postman Test Award",
+	"category": "Postman Test Catergory 2",
+	"year": 2019,
+	"won": false
+},
+{
+	"_id": {
+		"$oid": "690ceb1a927b5246d67ae3b2"
+	},
+	"movie_id": {
+		"$oid": "69026399a9f15b2a209c60cd"
+	},
+	"award_name": "Postman Test Award",
+	"category": "Postman Test Catergory 2",
+	"year": 2019,
+	"won": false
+}]
+
